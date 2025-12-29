@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lynsey Hall | Product Leader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.85); /* Increased opacity for legibility */
+            --primary: #818cf8;
+            --secondary: #c084fc;
+            --accent: #2dd4bf;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        strong {
+            color: var(--accent); /* Highlight key metrics */
+            font-weight: 700;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 { width: 400px; height: 400px; background: #4f46e5; top: -100px; left: -100px; animation-delay: 0s; }
+        .orb-2 { width: 300px; height: 300px; background: #c026d3; bottom: 10%; right: -50px; animation-delay: -5s; }
+        .orb-3 { width: 200px; height: 200px; background: #0ea5e9; top: 40%; left: 60%; animation-delay: -10s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        header {
+            min-height: 90vh; /* Adjusted from 100vh */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeUp 1s ease-out;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        /* AI Interface */
+        .ai-interface {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .ai-interface:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .ai-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ai-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            gap: 1rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            color: white;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(0,0,0,0.4);
+        }
+
+        .ask-btn {
+            padding: 0 2rem;
+            background: var(--gradient);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .ask-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(129, 140, 248, 0.4);
+        }
+
+        .ai-response {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(129, 140, 248, 0.1);
+            border-left: 3px solid var(--primary);
+            border-radius: 4px;
+            display: none;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Sections */
+        section {
+            padding: 8rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered Animations */
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        .visible .stagger-item {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .visible .stagger-item:nth-child(1) { transition-delay: 0.1s; }
+        .visible .stagger-item:nth-child(2) { transition-delay: 0.2s; }
+        .visible .stagger-item:nth-child(3) { transition-delay: 0.3s; }
+        .visible .stagger-item:nth-child(4) { transition-delay: 0.4s; }
+        .visible .stagger-item:nth-child(5) { transition-delay: 0.5s; }
+        .visible .stagger-item:nth-child(6) { transition-delay: 0.6s; }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--gradient);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.6rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--bg-dark);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Pulse animation for the first timeline dot */
+        .timeline-item:first-child .timeline-dot {
+            box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.7);
+            animation: pulse-ring 2s infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(129, 140, 248, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(129, 140, 248, 0); }
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .timeline-content .company {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+        }
+
+        .timeline-content li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-content li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Skills Grid */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        /* Center the 3rd item in Education section */
+        #education .skills-container {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        #education .skills-container .skill-card:nth-child(3) {
+            grid-column: 1 / -1;
+            justify-self: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        @media (max-width: 768px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            #education .skills-container .skill-card:nth-child(3) {
+                grid-column: 1;
+                max-width: 100%;
+            }
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            margin: 0.3rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover .skill-tag {
+            border-color: rgba(129, 140, 248, 0.3);
+            color: white;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-card {
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-card:hover {
+            transform: scale(1.05);
+            background: var(--gradient);
+            border: none;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Mobile Contact Grid */
+        @media (max-width: 768px) {
+            .contact-grid {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .contact-card {
+                padding: 1.5rem;
+                flex: 1;
+                min-width: auto;
+            }
+
+            .contact-card h3, .contact-card p {
+                display: none; /* Hide text on mobile for compact view */
+            }
+
+            .contact-icon {
+                margin-bottom: 0;
+                font-size: 2rem;
+            }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        /* Utilities */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .menu-toggle { display: flex; }
+            
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 2rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .timeline { padding-left: 0; border: none; }
+            .timeline-dot { display: none; }
+            .timeline-item { 
+                padding-left: 1rem; 
+                border-left: 2px solid var(--primary);
+                margin-left: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">LH.</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about" onclick="toggleMenu()">About</a></li>
+                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+                <li><a href="#skills" onclick="toggleMenu()">Skills</a></li>
+                <li><a href="#education" onclick="toggleMenu()">Education</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with AI Interface -->
+    <header>
+        <div class="hero-content">
+            <h1>Hello, I'm <span>Lynsey Hall</span></h1>
+            <p class="subtitle">Turning complex user problems into high-impact products. Powered by data, strategy, and applied AI.</p>
+            
+            <div class="ai-interface">
+                <div class="ai-header">
+                    <div class="ai-dot"></div>
+                    AI Assistant Active <span style="opacity: 0.5; margin: 0 8px;">|</span> Powered by GPT-4o Mini
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" id="qaInput" placeholder="Ask about my experience, leadership style, or AI projects..." />
+                    <button class="ask-btn" onclick="askQuestion()">Ask</button>
+                </div>
+                <div class="ai-response" id="qaResponse"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div style="font-size: 1.1rem; color: var(--text-muted); text-align: center; max-width: 800px; margin: 0 auto;" class="stagger-item">
+            <p>I am a Product Manager with over 10 years of experience delivering results across B2B SaaS, cybersecurity, telecoms, travel, and finance. I specialize in full lifecycle product delivery, from backend systems to user-facing growth journeys.</p>
+            <br>
+            <p>I am passionate about emerging technologies, particularly <strong>agentic AI</strong> and <strong>applied machine learning</strong>. I lead cross-functional teams of up to 20 people to build adaptive products that solve real user problems.</p>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+            
+            <div class="timeline-item stagger-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">07/2023 - Present</div>
+                <div class="timeline-content">
+                    <h3>Lead Product Manager - Learner Experience</h3>
+                    <div class="company">Immersive Labs | Remote, Barcelona</div>
+                    <ul>
+                        <li>Delivered a <strong>63% reduction in course abandonment</strong> for 50,000 developer end-users by implementing a data-driven roadmap including ML/AI tips and chatbots.</li>
+                        <li>Retained customers generating <strong>$1.2 million APR</strong> by designing bespoke yet scalable features for two leading global banking clients.</li>
+                        <li>Managed relationships with blue-chip enterprise executives and cybersecurity experts to co-create industry-leading training.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item stagger-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">07/2022 - 06/2023</div>
+                <div class="timeline-content">
+                    <h3>Principal Product Manager - Global Expansion</h3>
+                    <div class="company">Twilio | Remote, Barcelona</div>
+                    <ul>
+                        <li>Shaped Twilio's global expansion strategy by defining the vision for a personalisation platform enabling tailored, customer-centric solutions.</li>
+                        <li>Improved <strong>first 5 key onboarding metrics by 23%</strong> by developing a proof of concept for a global personalisation platform.</li>
+                        <li>Successfully influenced VPs & Directors to secure buy-in and drive execution across vertical business units.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item stagger-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">06/2021 - 06/2022</div>
+                <div class="timeline-content">
+                    <h3>Senior Product Manager - Video & App</h3>
+                    <div class="company">Hopin | Remote, Barcelona</div>
+                    <ul>
+                        <li>Increased <strong>active mobile app users by 30%</strong> by revamping the onboarding process using qualitative user research.</li>
+                        <li>Improved <strong>30-day user retention by 25%</strong> by introducing data-driven engagement features and sunsetting low-usage features.</li>
+                        <li>Enhanced <strong>video streaming stability by 20%</strong> through backend optimisations and core re-architecture.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item stagger-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">09/2020 - 07/2021</div>
+                <div class="timeline-content">
+                    <h3>VP Product EMEA</h3>
+                    <div class="company">TheVentureCity | Remote, Barcelona</div>
+                    <ul>
+                        <li>Led Pre-Seed and Series A startup founders through a comprehensive accelerator program.</li>
+                        <li>Supported a health tech portfolio company in securing a <strong>$20M Series A round</strong>.</li>
+                        <li>Helped a startup bootstrap to a <strong>€36M valuation</strong> with over 100,000 active users.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item stagger-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">02/2019 - 07/2020</div>
+                <div class="timeline-content">
+                    <h3>Product Manager - Engine & App</h3>
+                    <div class="company">Skyscanner | Barcelona, Spain</div>
+                    <ul>
+                        <li>Increased <strong>mobile app price alert activation by 27%</strong>.</li>
+                        <li>Increased <strong>trip saving funnel activation by 44%</strong>.</li>
+                        <li>Collaborated with Data Science on ML proof of concept for flight price prediction.</li>
+                        <li>Defined strategy for a super cache API product achieving sub-second search results.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item stagger-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">10/2017 - 10/2018</div>
+                <div class="timeline-content">
+                    <h3>Product Owner - Onboarding & Growth</h3>
+                    <div class="company">Travix | Amsterdam, Netherlands</div>
+                    <ul>
+                        <li>Reduced average log-in time from 10s to 3s.</li>
+                        <li>Delivered <strong>14% increase in account creation</strong>.</li>
+                        <li>Reduced call center contact by <strong>49%</strong> through automated processes.</li>
+                        <li>Achieved <strong>37% increase in mobile conversion</strong> with new front-end architecture.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills Grid -->
+    <section id="skills">
+        <h2>Skills & Technologies</h2>
+        <div class="skills-container">
+            
+            <div class="skill-card stagger-item">
+                <h3>Product Management</h3>
+                <div>
+                    <span class="skill-tag">Strategy & Roadmap</span>
+                    <span class="skill-tag">Cross-functional Leadership</span>
+                    <span class="skill-tag">Stakeholder Management</span>
+                    <span class="skill-tag">Go-to-market</span>
+                    <span class="skill-tag">Data-driven Decision Making</span>
+                    <span class="skill-tag">User Research</span>
+                    <span class="skill-tag">Growth</span>
+                </div>
+            </div>
+
+            <div class="skill-card stagger-item">
+                <h3>Technical</h3>
+                <div>
+                    <span class="skill-tag">AI/ML Development</span>
+                    <span class="skill-tag">API Design</span>
+                    <span class="skill-tag">System Architecture</span>
+                    <span class="skill-tag">Backend Systems</span>
+                    <span class="skill-tag">Mobile Apps</span>
+                    <span class="skill-tag">Data Infrastructure</span>
+                </div>
+            </div>
+
+            <div class="skill-card stagger-item">
+                <h3>Tools & Methods</h3>
+                <div>
+                    <span class="skill-tag">Product Analytics</span>
+                    <span class="skill-tag">A/B Testing</span>
+                    <span class="skill-tag">Behavioral Analytics</span>
+                    <span class="skill-tag">Agile/Scrum</span>
+                    <span class="skill-tag">Design Thinking</span>
+                    <span class="skill-tag">Technical Documentation</span>
+                </div>
+            </div>
+
+            <div class="skill-card stagger-item">
+                <h3>Business & Leadership</h3>
+                <div>
+                    <span class="skill-tag">Enterprise CRM</span>
+                    <span class="skill-tag">Product-led Growth</span>
+                    <span class="skill-tag">Customer Retention</span>
+                    <span class="skill-tag">Team Mentoring</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Education & Learning -->
+    <section id="education">
+        <h2>Education & Learning</h2>
+        <div class="skills-container">
+            <div class="skill-card stagger-item">
+                <h3>University of Chester</h3>
+                <p style="color: var(--text-muted);">B.Sc. Computer Science (2011-2015)</p>
+            </div>
+            <div class="skill-card stagger-item">
+                <h3>Certifications</h3>
+                <div style="margin-top: 1rem;">
+                    <span class="skill-tag">BCS Certified Business Analyst</span>
+                    <span class="skill-tag">Professional Scrum Master I</span>
+                    <span class="skill-tag">Google UX Design</span>
+                    <span class="skill-tag">Building Agentic AI (Maven)</span>
+                </div>
+            </div>
+            <div class="skill-card stagger-item">
+                <h3>Languages</h3>
+                <div style="margin-top: 1rem;">
+                    <span class="skill-tag">English (Native)</span>
+                    <span class="skill-tag">Spanish (B1)</span>
+                    <span class="skill-tag">French (A2)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2>Let's Connect</h2>
+        <div class="contact-grid">
+            <a href="mailto:hall.lynsey@icloud.com" class="contact-card stagger-item">
+                <span class="contact-icon">📧</span>
+                <h3>Email</h3>
+                <p>hall.lynsey@icloud.com</p>
+            </a>
+            <a href="https://linkedin.com/in/lynseyahall" target="_blank" class="contact-card stagger-item">
+                <span class="contact-icon">💼</span>
+                <h3>LinkedIn</h3>
+                <p>Connect with me</p>
+            </a>
+            <a href="https://github.com/slinky-daxie" target="_blank" class="contact-card stagger-item">
+                <span class="contact-icon">🐙</span>
+                <h3>GitHub</h3>
+                <p>Check my code</p>
+            </a>
+        </div>
+        <p style="text-align: center; margin-top: 3rem; color: var(--text-muted);">📍 Based in Barcelona, Spain</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Lynsey Hall. Built with AI & Web Standards.</p>
+    </footer>
+
+    <script>
+        // Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        }
+
+        // AI Logic
+        const qaInput = document.getElementById('qaInput');
+        const qaResponse = document.getElementById('qaResponse');
+        
+        const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3000/api/ask'
+            : 'https://vercel-backend-orcin-theta.vercel.app/api/ask';
+
+        async function askQuestion() {
+            const question = qaInput.value.trim();
+            if (!question) return;
+
+            qaResponse.style.display = 'block';
+            qaResponse.textContent = "Processing...";
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question })
+                });
+                
+                const data = await response.json();
+                qaResponse.textContent = data.answer || "I couldn't get an answer at the moment.";
+            } catch (error) {
+                console.error(error);
+                qaResponse.textContent = getFallbackAnswer(question);
+            }
+        }
+
+        qaInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') askQuestion();
+        });
+
+        // Fallback Knowledge Base
+        const knowledgeBase = {
+            travel: "I have experience at Skyscanner (Mobile App PM) and Travix (Onboarding & Growth). I focused on increasing conversions, app activation, and reducing friction.",
+            skills: "My core skills include Product Strategy, AI/ML Development, Cross-functional Leadership, and Data-driven decision making.",
+            contact: "You can reach me at hall.lynsey@icloud.com or on LinkedIn.",
+            default: "I can answer questions about my experience, skills, education, or leadership style. Try asking 'What did you do at Skyscanner?'"
+        };
+
+        function getFallbackAnswer(q) {
+            const lower = q.toLowerCase();
+            if (lower.includes('travel') || lower.includes('skyscanner')) return knowledgeBase.travel;
+            if (lower.includes('skill') || lower.includes('tech')) return knowledgeBase.skills;
+            if (lower.includes('contact') || lower.includes('email')) return knowledgeBase.contact;
+            return knowledgeBase.default;
+        }
+    </script>
+</body>
+</html>
